@@ -1,0 +1,1 @@
+1 0 * * * * /usr/local/bin/python /app/src/main.py >> /app/logs/main.log 2>&1

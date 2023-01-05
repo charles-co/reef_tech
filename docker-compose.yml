@@ -1,0 +1,23 @@
+version: '3'
+
+volumes:
+  reef_technologies_local_postgres_data: {}
+  reef_technologies_local_postgres_data_backups: {}
+
+services:
+  cron:
+    build:
+      context: .
+      dockerfile: ./compose/cron/Dockerfile
+    image: reef_technologies_local_cron
+    container_name: reef_technologies_local_cron
+    volumes:
+      - .:/app:z
+    command: /start
+
+  web:
+    image: nginx:latest
+    volumes:
+      - ./html:/usr/share/nginx/html
+    ports:
+      - 8080:80
